@@ -216,14 +216,17 @@ class PieChartView @JvmOverloads constructor(
     private class TextItem(val text: String, val x: Float, val y: Float, val paint: TextPaint)
 
 
-    data class DataItem(val label: String, val color: Int, val value: Float) : Parcelable {
+    data class DataItem(val id: Int, val label: String, val color: Int, val value: Float) :
+        Parcelable {
         constructor(parcel: Parcel) : this(
+            parcel.readInt(),
             parcel.readString().orEmpty(),
             parcel.readInt(),
             parcel.readFloat()
         )
 
         override fun writeToParcel(dest: Parcel?, flags: Int) {
+            dest?.writeInt(id)
             dest?.writeString(label)
             dest?.writeInt(color)
             dest?.writeFloat(value)
