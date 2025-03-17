@@ -22,7 +22,7 @@ class SimpleStockChartView @JvmOverloads constructor(
 
     private val items = ArrayList<ChartItem>()
 
-    private lateinit var path: Path
+    private  val path: Path = Path()
 
     private val axisPaint = Paint().apply {
         color = Color.BLACK
@@ -123,7 +123,7 @@ class SimpleStockChartView @JvmOverloads constructor(
     }
 
     private fun drawLineGraph(canvas: Canvas) {
-        path = Path()
+        path.reset()
         val stepX = stepX()
 
         val maxY = items.maxOf { it.amount }
